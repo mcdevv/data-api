@@ -4,9 +4,17 @@
 * app directory structure by express-generator
 * http://localhost:3000/v1
 * 
+* issues: 
+  * .coveralls.yml repo_token is private, add file to .gitignore??? is it only needed by the coverage script?
+  * 
 
+[![Build Status](https://travis-ci.com/mcdevv/data-api.svg?token=7fpWGwwX91xyrjXdL85A&branch=main)](https://travis-ci.com/mcdevv/data-api)
 
+[![Coverage Status](https://coveralls.io/repos/github/mcdevv/data-api/badge.svg?branch=main)](https://coveralls.io/github/mcdevv/data-api?branch=main)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/67afbeb4bbb35f2090d1/maintainability)](https://codeclimate.com/github/mcdevv/data-api/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/67afbeb4bbb35f2090d1/test_coverage)](https://codeclimate.com/github/mcdevv/data-api/test_coverage)
 
 
 

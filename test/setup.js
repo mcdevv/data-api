@@ -25,9 +25,9 @@ is a helper file that helps us
 organize all the imports we need in our test files
 
 */
-import supertest from 'supertest';
+import supertest from 'supertest'; // HTTP assertions made easy
 import chai from 'chai';
-import sinonChai from 'sinon-chai';
+import sinonChai from 'sinon-chai'; // All of your favorite Sinon.JS assertions made their way into Sinon–Chai
 import app from '../src/app';
 
 chai.use(sinonChai);

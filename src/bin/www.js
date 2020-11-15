@@ -3,7 +3,7 @@
  */
 // const debug = require('debug')('quick-credit:server');
 import debug from 'debug';
-import http from 'http';
+import http from 'http'; // const server = http.createServer(app);
 import app from '../app';
 /**
  * Normalize a port into a number, string, or false.
@@ -40,10 +40,12 @@ const onError = error => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
   case 'EACCES':
+    // eslint-disable-next-line no-console
     console.log(`${bind} requires elevated privileges`);
     process.exit(1);
     break;
   case 'EADDRINUSE':
+    // eslint-disable-next-line no-console
     console.log(`${bind} is already in use`);
     process.exit(1);
     break;
@@ -54,7 +56,7 @@ const onError = error => {
 /**
  * event listener for HTTP server "listening" event
  * outputs the port the server is listening on to the console
- * 
+ *
  */
 const onListening = () => {
   const addr = server.address();

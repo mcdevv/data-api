@@ -1,5 +1,5 @@
 {
-  "name": "express-api-template",
+  "name": "data-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,14 +14,15 @@
     "pretty": "prettier --write '**/*.{js,json}' '!node_modules/**'",
     "// postpretty: auto-fix common linting issues. can just run 'yarn pretty' without running the lint command ": "",
     "postpretty": "yarn lint --fix",
-    "// test: executes our test with nyc and generates three kinds of coverage report:  ": "",
+    "// test: executes the tests with nyc and generates three kinds of coverage report:  ": "",
     "// test: * an HTML report, outputted to the coverage/ dir ": "dir is auto-generated",
     "// test: * a text report outputted to the terminal ": "",
     "// test: * an lcov report outputted to the .nyc_output/ dir ": "dir is auto-generated",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register",
+    "// coverage: command uploads the coverage report in the .nyc_output folder to coveralls.io ": "",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "runQuery": "babel-node ./src/utils/runQuery",
-    "// commit: 'yarn pretty' first ... "
+    "// commit: 'yarn pretty' first ... ": "",
     "commit": "git add --all; git commit -m ",
     "push": "git push"
   },
@@ -33,7 +34,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "pg": "^7.18.2"
+    "pg": "8.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

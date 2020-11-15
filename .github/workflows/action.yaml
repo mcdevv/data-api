@@ -1,0 +1,13 @@
+name: "data-api"
+ 
+on:
+  push:
+jobs:
+  deploy-data-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout mcdevv/data-api"
+        uses: actions/checkout@v1
+        with:
+          repository: "mcdevv/data-api"
+          ref: "master"

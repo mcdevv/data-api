@@ -1,5 +1,5 @@
 {
-  "watch": [ 
+  "watch": [
     "// The watch key tells nodemon which files and folders to watch for changes. So, whenever any of these files changes, nodemon restarts the server.",
     ".env",
     "package.json",

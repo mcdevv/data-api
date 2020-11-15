@@ -16,7 +16,7 @@ describe('Messages', () => {
       });
   });
 
-  it('posts messages', done => {
+/*   it('posts messages', done => {
     const data = { name: 'some name', message: 'new message' };
     server
       .post(`${BASE_URL}/messages`)
@@ -32,5 +32,5 @@ describe('Messages', () => {
         });
         done();
       });
-  });
+  }); */
 });

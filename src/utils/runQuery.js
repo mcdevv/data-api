@@ -1,6 +1,7 @@
 import { createTables, insertIntoTables } from './queryFunctions';
+// empty import; a module with side-effects
 
 (async () => {
-  await createTables();
+  // await createTables();
   await insertIntoTables();
 })();

@@ -1,15 +1,11 @@
 {
-  "// having: yarn add --dev eslint eslint-config-airbnb-base eslint-plugin-import": "",
   "env": {
     "browser": true,
     "es6": true,
     "node": true,
     "mocha": true
   },
-  "extends": 
-    [
-      "airbnb-base"
-    ],
+  "extends": ["airbnb-base"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"

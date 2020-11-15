@@ -1,0 +1,1 @@
+ to have a way to perform common database operations from the command line 

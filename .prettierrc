@@ -1,5 +1,4 @@
 {
-  "// having: yarn add --dev prettier ": "",
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,
