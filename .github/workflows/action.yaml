@@ -36,8 +36,7 @@ jobs:
     - name: test
       env:
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
-        CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
-      run: yarn test
+      run: cat .netrc
 # 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
 # using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
 # heroku authorizations:create provides a long-term token which is stored in github secrets as HEROKU_AUTH_TOKEN
@@ -57,10 +56,10 @@ jobs:
         EOF`
     - name: "Add remote"
       shell: "bash"
+      # run this once in local repo. returns: set git remote heroku to https://git.heroku.com/data-api-z.git
       run: |
         heroku git:remote --app data-api-z
     - name: "Push to heroku"
       shell: "bash"
       run: |
         git push heroku HEAD:master  
-        
