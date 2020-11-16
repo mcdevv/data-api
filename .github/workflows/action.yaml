@@ -22,11 +22,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install and test
+    - name: install
+      run: yarn install
+    - name: check env var
+      env: 
+        TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
+      run: echo $TEST_ENV_VARIABLE
+    - name: test
       env: 
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
         CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
-      run: yarn install
-      run: echo $SHELL
-      run: echo $TEST_ENV_VARIABLE
       run: yarn test
