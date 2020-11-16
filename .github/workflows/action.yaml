@@ -63,4 +63,4 @@ jobs:
       shell: "bash"
       run: |
         git push heroku HEAD:master  
-# next: get app running via push from local. then debug GA
+# note to skip devDependencies pruning: heroku config:set YARN_PRODUCTION=false
