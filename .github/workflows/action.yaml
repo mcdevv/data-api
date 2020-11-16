@@ -1,14 +1,18 @@
 
-name: Node.js CI
+name: Node.js CI runner
+# runner - a hosted virtual OS for the test and bu
 
-on:
+# workflow: the instructions defined in this file
+
+
+on: # event: trigger by the repo that executes the workflow
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  test-and-deploy: # was build
+  build-test-and-deploy: # was build
 
     runs-on: ubuntu-latest
 
@@ -17,6 +21,7 @@ jobs:
         node-version: [14.x]
     # https://github.com/actions/setup-node
     steps:
+      # action - an element of a step
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -50,3 +55,12 @@ jobs:
             login $HEROKU_LOGIN_EMAIL
             password $HEROKU_AUTH_TOKEN
         EOF`
+    - name: "Add remote"
+      shell: "bash"
+      run: |
+        heroku git:remote --app data-api-z
+    - name: "Push to heroku"
+      shell: "bash"
+      run: |
+        git push heroku HEAD:master  
+        

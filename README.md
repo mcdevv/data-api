@@ -27,6 +27,13 @@
 
 
 
+
+# Starters and inspiration
+* https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/
+* https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
+* 
+
+
 # Express API template
 
 [![Build Status](https://travis-ci.com/chidimo/Express-API-Template.svg?token=vRPqNDsj84fjiYCWzphq&branch=master)](https://travis-ci.com/chidimo/Express-API-Template)

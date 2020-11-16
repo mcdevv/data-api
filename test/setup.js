@@ -33,4 +33,7 @@ import app from '../src/app';
 chai.use(sinonChai);
 export const { expect } = chai;
 export const server = supertest.agent(app);
+// export const server = supertest(app); //  what is the difference?
+// ??? neither hits the server running against build/ if it is running
+//     necessary, or do we just trust babel? ... or, other ETE testing?
 export const BASE_URL = '/v1'; // ??? should be configurable"
