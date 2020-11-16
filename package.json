@@ -9,7 +9,7 @@
   },
   "scripts": {
     "// prestart: build the content of the src folder (to ES5) ": "ttd: why if using latest node ... may not be option, may want early stage features",
-    "prestart": "babel ./src --out-dir build",
+    "build": "babel ./src --out-dir build",
     "// start: start the server from the build folder": "",
     "start": "node ./build/bin/www",
     "// startdev: start the server in development mode. note: babel-node; the --exec flag forces babel-node to serve the src/ folder ": "",
