@@ -18,7 +18,7 @@
     "// test: * an HTML report, outputted to the coverage/ dir ": "dir is auto-generated",
     "// test: * a text report outputted to the terminal ": "",
     "// test: * an lcov report outputted to the .nyc_output/ dir ": "dir is auto-generated",
-    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register",
+    "test": "yarn run nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register",
     "// coverage: command uploads the coverage report in the .nyc_output folder to coveralls.io ": "",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "runQuery": "babel-node ./src/utils/runQuery",
