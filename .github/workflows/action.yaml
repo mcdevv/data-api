@@ -55,10 +55,10 @@ jobs:
             login $HEROKU_LOGIN_EMAIL
             password $HEROKU_AUTH_TOKEN
         EOF`
-    - name: test .netrc
+    - name: test ~/.netrc
       env:
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
-      run: cat .netrc
+      run: cat ~/.netrc
     - name: "Add remote"
       shell: "bash"
       # run this once in local repo. returns: set git remote heroku to https://git.heroku.com/data-api-z.git
