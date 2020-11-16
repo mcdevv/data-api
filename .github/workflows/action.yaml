@@ -36,11 +36,12 @@ jobs:
     - name: test
       env:
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
-      run: cat .netrc
-# 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
-# using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
-# heroku authorizations:create provides a long-term token which is stored in github secrets as HEROKU_AUTH_TOKEN
+        CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
+      run: yarn test
     - name: "Create .netrc for Heroku Auth"
+      # 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
+      # using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
+      # heroku authorizations:create provides a long-term token which is stored in github secrets as HEROKU_AUTH_TOKEN
       shell: bash
       env:
         EMAIL: ${{ secrets.EMAIL }}
@@ -54,6 +55,10 @@ jobs:
             login $HEROKU_LOGIN_EMAIL
             password $HEROKU_AUTH_TOKEN
         EOF`
+    - name: test .netrc
+      env:
+        TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
+      run: cat .netrc
     - name: "Add remote"
       shell: "bash"
       # run this once in local repo. returns: set git remote heroku to https://git.heroku.com/data-api-z.git
@@ -65,4 +70,6 @@ jobs:
         git push heroku HEAD:master  
 # note to skip devDependencies pruning: heroku config:set YARN_PRODUCTION=false
 # note remember 'heroku logs' can show old logs at the top at the top .. use --tail and read from the bottom upwards
-# next: get working from Github Actions, then cron schedule
+# next: get working from Github Actions, can't heroku git:remote because of the acceptance form ..
+#       is it recognizing the command as from me, need to login somehow or .netrc file does it?
+#       then cron schedule

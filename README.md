@@ -1,5 +1,6 @@
 
-https://data-api-z.herokuapp.com/v1
+https://data-api-z.herokuapp.com/v1/messages
+
 
 * app directory structure by express-generator
 * http://localhost:3000/v1
