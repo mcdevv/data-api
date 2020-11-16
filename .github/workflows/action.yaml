@@ -8,14 +8,14 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test-and-deploy: # was build
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [14.x]
-    # https://github.com/actions/setup-node 
+    # https://github.com/actions/setup-node
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -24,12 +24,29 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: install
       run: yarn install
-    - name: check env var
-      env: 
-        TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
-      run: echo $TEST_ENV_VARIABLE
+    #- name: check env var
+    #  env:
+    #    TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
+    #  run: echo $TEST_ENV_VARIABLE # note: Web UI masks the value of the env var with ***
     - name: test
-      env: 
+      env:
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
         CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
       run: yarn test
+# 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
+# using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
+# heroku authorizations:create provides a long-term token which is stored in github secrets as HEROKU_AUTH_TOKEN
+    - name: "Create .netrc for Heroku Auth"
+      shell: bash
+      env:
+        EMAIL: ${{ secrets.EMAIL }}
+        HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+      run: |
+        `cat >~/.netrc <<EOF
+        machine api.heroku.com
+            login $HEROKU_LOGIN_EMAIL
+            password $HEROKU_AUTH_TOKEN
+        machine git.heroku.com
+            login $HEROKU_LOGIN_EMAIL
+            password $HEROKU_AUTH_TOKEN
+        EOF`
