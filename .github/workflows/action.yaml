@@ -64,5 +64,5 @@ jobs:
       run: |
         git push heroku HEAD:master  
 # note to skip devDependencies pruning: heroku config:set YARN_PRODUCTION=false
-# next: yarn logs, see missing babel dependency, was not there so upgraded all @babel
-#       once working on heroku from local, get working from Github Actions, then cron schedule
+# note remember 'heroku logs' can show old logs at the top at the top .. use --tail and read from the bottom upwards
+# next: get working from Github Actions, then cron schedule
