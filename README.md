@@ -23,7 +23,7 @@ TTD: redo these for github actions with coveralls. see travis config in /bu
 
 [![Coverage Status](https://coveralls.io/repos/github/mcdevv/data-api/badge.svg?branch=main)](https://coveralls.io/github/mcdevv/data-api?branch=main)
 
-
+@babel/cli @babel/core @babel/node @babel/plugin-transform-runtime @babel/preset-env @babel/register @babel/runtime
 
 
 
