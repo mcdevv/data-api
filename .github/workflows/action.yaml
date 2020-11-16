@@ -25,7 +25,7 @@ jobs:
       env: 
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
         CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
-    - run: yarn install
-    - run: echo $SHELL
-    - run: echo $TEST_ENV_VARIABLE
-    - run: yarn test
+      run: yarn install
+      run: echo $SHELL
+      run: echo $TEST_ENV_VARIABLE
+      run: yarn test
