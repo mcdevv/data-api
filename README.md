@@ -8,6 +8,15 @@
   * .coveralls.yml repo_token is private, add file to .gitignore??? is it only needed by the coverage script?
   * 
 
+  workflow_dispatch: # puts a ‘Run workflow’ button on the Actions tab https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
+
 [![Build Status](https://travis-ci.com/mcdevv/data-api.svg?token=7fpWGwwX91xyrjXdL85A&branch=main)](https://travis-ci.com/mcdevv/data-api)
 
 [![Coverage Status](https://coveralls.io/repos/github/mcdevv/data-api/badge.svg?branch=main)](https://coveralls.io/github/mcdevv/data-api?branch=main)
