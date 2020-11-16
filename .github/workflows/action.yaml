@@ -6,7 +6,14 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+  workflow_dispatch: # puts a ‘Run workflow’ button on the Actions tab https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'  
 jobs:
   build:
 
@@ -15,7 +22,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
+    # https://github.com/actions/setup-node 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
