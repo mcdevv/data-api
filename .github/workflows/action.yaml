@@ -41,7 +41,8 @@ jobs:
     - name: "Create .netrc for Heroku Auth"
       # 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
       # using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
-      # heroku authorizations:create provides a long-term token which is stored in github secrets as HEROKU_AUTH_TOKEN
+      # heroku authorizations:create provides a long-term token - one was created and stored in github secrets as HEROKU_AUTH_TOKEN
+      # a short-term token is in ~/.netrc
       shell: bash
       env:
         EMAIL: ${{ secrets.EMAIL }}
@@ -73,3 +74,8 @@ jobs:
 # next: get working from Github Actions, can't heroku git:remote because of the acceptance form ..
 #       is it recognizing the command as from me, need to login somehow or .netrc file does it?
 #       then cron schedule
+
+git remote add data-api-z https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/data-api-z.git
+git push https://heroku:0ec06154-28b2-42b9-b47d-34779ffbf6f6@git.heroku.com/data-api-z.git HEAD:master
+
+
