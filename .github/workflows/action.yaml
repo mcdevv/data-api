@@ -38,44 +38,21 @@ jobs:
         TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
         CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
       run: yarn test
-    - name: "Create .netrc for Heroku Auth"
-      # 'authenticating Heroku' at https://www.smashingmagazine.com/2020/10/handling-continuous-integration-delivery-github-actions/
-      # using the Auth Token method: https://devcenter.heroku.com/articles/authentication#retrieving-the-api-token
-      # heroku authorizations:create provides a long-term token - one was created and stored in github secrets as HEROKU_AUTH_TOKEN
-      # a short-term token is in ~/.netrc
-      shell: bash
-      env:
-        EMAIL: ${{ secrets.EMAIL }}
-        HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-      run: |
-        `cat >~/.netrc <<EOF
-        machine api.heroku.com
-            login $HEROKU_LOGIN_EMAIL
-            password $HEROKU_AUTH_TOKEN
-        machine git.heroku.com
-            login $HEROKU_LOGIN_EMAIL
-            password $HEROKU_AUTH_TOKEN
-        EOF`
-    - name: test ~/.netrc
-      env:
-        TEST_ENV_VARIABLE: ${{ secrets.TEST_ENV_VARIABLE }}
-      run: cat ~/.netrc
     - name: "Add remote"
-      shell: "bash"
-      # run this once in local repo. returns: set git remote heroku to https://git.heroku.com/data-api-z.git
       run: |
-        heroku git:remote --app data-api-z
+        git remote add ${{ secrets.HEROKU_APP_NAME }} https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
     - name: "Push to heroku"
       shell: "bash"
       run: |
-        git push heroku HEAD:master  
+        git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git HEAD:master  
+
 # note to skip devDependencies pruning: heroku config:set YARN_PRODUCTION=false
 # note remember 'heroku logs' can show old logs at the top at the top .. use --tail and read from the bottom upwards
 # next: get working from Github Actions, can't heroku git:remote because of the acceptance form ..
 #       is it recognizing the command as from me, need to login somehow or .netrc file does it?
 #       then cron schedule
 
-git remote add data-api-z https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/data-api-z.git
-git push https://heroku:0ec06154-28b2-42b9-b47d-34779ffbf6f6@git.heroku.com/data-api-z.git HEAD:master
+  
+        
 
 
