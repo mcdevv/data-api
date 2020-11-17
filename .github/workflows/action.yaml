@@ -42,9 +42,9 @@ jobs:
       run: |
         git remote add ${{ secrets.HEROKU_APP_NAME }} https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
     - name: "initial run, initial fetch to unshallow"
-      # Push rejected, source repository is a shallow clone
-      # Unshallow it with `git fetch --all --unshallow` to fetch all remotes
-      # try pushing again
+      # push rejected, source repository is a shallow clone
+      # unshallow it with `git fetch --all --unshallow` to fetch all remotes
+      # try pushing again 
       run: |
         git fetch --unshallow https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
     - name: "Push to heroku"
@@ -59,8 +59,3 @@ jobs:
 
 #bnext: the new -y app didn't work? it won't accept the push
  #     maybe try a git pull
-
-
-
-
-
