@@ -52,7 +52,4 @@ jobs:
 #       is it recognizing the command as from me, need to login somehow or .netrc file does it?
 #       then cron schedule
 
-  
-        
-
 
