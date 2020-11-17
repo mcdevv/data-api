@@ -41,12 +41,26 @@ jobs:
     - name: "Add remote"
       run: |
         git remote add ${{ secrets.HEROKU_APP_NAME }} https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-    #- name: "fetch to unshallow"
-      # push rejected, source repository is a shallow clone
-      # unshallow it with `git fetch --all --unshallow` to unshallow from Github
-      # try pushing again 
-    #  run: |
-    #    git fetch --unshallow
+    - name: "fetch to unshallow"
+      # without this step:
+      # with a brand new Heroku app:
+      #   push rejected, source repository is a shallow clone
+      #   unshallow it with `git fetch --all --unshallow` to unshallow from Github
+      #   try pushing again 
+      # with an existing Heroku app that has already been pushed to:
+      #   Run git push ***git.heroku.com/***.git HEAD:master  
+      #   git push ***git.heroku.com/***.git HEAD:master  
+      #   shell: /bin/bash -e {0}
+      #   To https://git.heroku.com/***.git
+      #   ! [rejected]        HEAD -> master (fetch first)
+      #   error: failed to push some refs to 'https://git.heroku.com/***.git'
+      #   hint: Updates were rejected because the remote contains work that you do
+      #   hint: not have locally. This is usually caused by another repository pushing
+      #   hint: to the same ref. You may want to first integrate the remote changes
+      #   hint: (e.g., 'git pull ...') before pushing again.
+      #   hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+      run: |
+        git fetch --unshallow
     - name: "Push to heroku"
       run: |
         git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git HEAD:master  
