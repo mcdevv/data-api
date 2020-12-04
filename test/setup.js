@@ -1,4 +1,7 @@
 /*
+
+??? mocha tries to run all files in this dir
+
 having: 
 yarn add --dev mocha chai nyc sinon-chai supertest coveralls
 
@@ -26,7 +29,7 @@ organize all the imports we need in our test files
 
 */
 import supertest from 'supertest'; // HTTP assertions made easy
-import chai from 'chai';
+import chai from 'chai'; // https://www.chaijs.com/api/bdd/ - expect() examples
 import sinonChai from 'sinon-chai'; // All of your favorite Sinon.JS assertions made their way into Sinon–Chai
 import app from '../src/app';
 
@@ -37,3 +40,4 @@ export const server = supertest.agent(app);
 // ??? neither hits the server running against build/ if it is running
 //     necessary, or do we just trust babel? ... or, other ETE testing?
 export const BASE_URL = '/v1'; // ??? should be configurable"
+

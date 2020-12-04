@@ -1,10 +1,3 @@
-import express from 'express';
-import { indexPage, messagesPage } from '../controllers'; // , addMessage
-// import { modifyMessage, performAsyncAction } from '../middleware';
-
-const indexRouter = express.Router();
-indexRouter.get('/', indexPage);
-indexRouter.get('/messages', messagesPage);
-// indexRouter.post('/messages', modifyMessage, performAsyncAction, addMessage);
-
-export default indexRouter;
+export * from './index-router'; // re-export of all named exports
+export * from './static-public-router';
+export * from './tables-to-json';

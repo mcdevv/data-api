@@ -1,6 +1,6 @@
 import { expect, server, BASE_URL } from './setup';
 // change name to index-page.test.js
-describe('Index page test', () => {
+describe('TEST: index page', () => {
   // https://mochajs.org/#getting-started
   it('get base url', done => {
     server

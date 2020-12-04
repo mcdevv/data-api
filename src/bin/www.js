@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 // const debug = require('debug')('quick-credit:server');
-import debug from 'debug'; 
+import debug from 'debug';
 import http from 'http'; // const server = http.createServer(app);
 import app from '../app';
 /**

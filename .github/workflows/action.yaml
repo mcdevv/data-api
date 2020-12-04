@@ -1,16 +1,16 @@
 
 name: Node.js CI runner
-# runner - a hosted virtual OS for the test and bu
+# Github Actions vocab: runner - is a hosted virtual OS for the test and bu
 
-# workflow: the instructions defined in this file
+# Github Actions vocab: workflow: is the instructions defined in this file
 
-
-on: # event: trigger by the repo that executes the workflow
+on: # Github Actions vocab: event: is the trigger by the repo that executes the workflow
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+# Github Actions vocab: job - self-explanatory
 jobs:
   build-test-and-deploy: # was build
 
@@ -20,8 +20,9 @@ jobs:
       matrix:
         node-version: [14.x]
     # https://github.com/actions/setup-node
+    # Github Actions vocab: step - self-explanatory
     steps:
-      # action - an element of a step
+      # Github Actions vocab: action - is an element of a step
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -64,12 +65,5 @@ jobs:
     - name: "Push to heroku"
       run: |
         git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git HEAD:master  
+     # d'oh note: remember 'heroku logs' can show old logs at the top at the top .. use --tail and read from the bottom upwards
 
-# note to skip devDependencies pruning: heroku config:set YARN_PRODUCTION=false
-# note remember 'heroku logs' can show old logs at the top at the top .. use --tail and read from the bottom upwards
-# next: get working from Github Actions, can't heroku git:remote because of the acceptance form ..
-#       is it recognizing the command as from me, need to login somehow or .netrc file does it?
-#       then cron schedule
-
-#bnext: the new -y app didn't work? it won't accept the push
- #     maybe try a git pull

@@ -1,9 +1,9 @@
 // mocha finds and runs this file first before any test files
-import {
+// import {
   // dropTables,
   // createTables,
   // insertIntoTables,
-} from '../src/utils/queryFunctions';
+// } from '../src/utils/queryFunctions';
 
 before(async () => {
   // await createTables();
