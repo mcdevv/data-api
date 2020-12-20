@@ -3,27 +3,6 @@
 -- tables
 
 
-DROP TABLE IF EXISTS covid_data_covid_tracking;
-CREATE TABLE IF NOT EXISTS covid_data_covid_tracking
-(cdct_id SERIAL PRIMARY KEY
-,UNIQUE (cdct_date, cdct_state) -- comes with an automatic unique index
-,cdct_date TIMESTAMP WITHOUT TIME ZONE NOT NULL
-,cdct_state CHAR(2) NOT NULL
-,cdct_positive INTEGER NOT NULL
-,cdct_positive_increase INTEGER NOT NULL
-,cdct_hospitalized_currently INTEGER NOT NULL
-,cdct_hospitalized_cumulative INTEGER NOT NULL
-,cdct_hospitalized_increase INTEGER NOT NULL
-,cdct_death INTEGER NOT NULL
-,cdct_death_increase INTEGER NOT NULL
-,cdct_total_test_results INTEGER NOT NULL
-,cdct_total_test_results_increase INTEGER NOT NULL
-,cdct_data_quality_grade VARCHAR(2)
-,cdct_last_update_et TIMESTAMP WITH TIME ZONE -- "11/27/2020 03:59"
-,cdct_create_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-,cdct_modified_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-
 DROP TABLE IF EXISTS covid_data_state_abbreviation;
 CREATE TABLE IF NOT EXISTS covid_data_state_abbreviation
 (cdsa_id SERIAL PRIMARY KEY
@@ -40,6 +19,7 @@ CREATE TABLE IF NOT EXISTS covid_data_state_governor_political_party
 ,UNIQUE (cdsgpp_state, cdsgpp_party)
 );
 
+
 DROP TABLE IF EXISTS covid_data_state_population;
 CREATE TABLE IF NOT EXISTS covid_data_state_population
 (cdsp_id SERIAL PRIMARY KEY
@@ -50,14 +30,6 @@ CREATE TABLE IF NOT EXISTS covid_data_state_population
 
 
 
--- test table
-DROP TABLE IF EXISTS test_table;
-CREATE TABLE IF NOT EXISTS test_table
-(tt_id SERIAL PRIMARY KEY
-,tt_columnName VARCHAR NOT NULL
-,tt_create_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-,UNIQUE (tt_columnName)
-);
 
 
 -- tables to hold data exactly as is in the original source files

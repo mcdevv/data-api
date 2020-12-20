@@ -1,5 +1,5 @@
-import { Model } from '../models/model';
-
+import { Model } from '../models/model.js';
+// ttd: look at sequelize.org
 const tablesToColumns = new Map([
   [ 'covid_data_state_abbreviation_original_source', [ 'state', 'abbreviation' ] ],
   [ 'covid_data_state_governor_political_party_original_source', [ 'state', 'party' ] ],
@@ -17,7 +17,7 @@ export const tableToJson = (table) => async (req, res) => {
     // console.log(`done query table: ${table}`);
     res.status(200).json(data.rows);
   } catch (err) {
-    res.status(200).json({ error: err.stack });
+    res.status(500).json({ error: err });
     // ttd: trigger error here for test coverage. 200?
   }
 };

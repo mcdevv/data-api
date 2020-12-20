@@ -31,7 +31,10 @@ organize all the imports we need in our test files
 import supertest from 'supertest'; // HTTP assertions made easy
 import chai from 'chai'; // https://www.chaijs.com/api/bdd/ - expect() examples
 import sinonChai from 'sinon-chai'; // All of your favorite Sinon.JS assertions made their way into Sinon–Chai
+import Debug from 'debug';
 import app from '../src/app';
+
+export const debug = Debug('app:test');
 
 chai.use(sinonChai);
 export const { expect } = chai;
@@ -40,4 +43,3 @@ export const server = supertest.agent(app);
 // ??? neither hits the server running against build/ if it is running
 //     necessary, or do we just trust babel? ... or, other ETE testing?
 export const BASE_URL = '/v1'; // ??? should be configurable"
-

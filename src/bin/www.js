@@ -1,10 +1,9 @@
 /**
  * Module dependencies.
  */
-// const debug = require('debug')('quick-credit:server');
 import debug from 'debug';
 import http from 'http'; // const server = http.createServer(app);
-import app from '../app';
+import app from '../app.js';
 /**
  * Normalize a port into a number, string, or fal se.
  */

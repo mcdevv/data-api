@@ -13,10 +13,10 @@
 https://www.postgresqltutorial.com/postgresql-materialized-views/
 https://stackoverflow.com/questions/29437650/how-can-i-ensure-that-a-materialized-view-is-always-up-to-date
 
-what I was doing might be called a rollup table - can be more efficient
+what might be called a rollup table - can be more efficient
 than MVs S you only deal with new data ... just create a secondary table
 and add any changed data into it. insert into rollup_table select xyz from source_table
-
+ 
 
 With CONCURRENTLY option, PostgreSQL creates a temporary updated version 
 of the materialized view, compares two versions, and performs INSERT and UPDATE 
@@ -28,7 +28,13 @@ option is only available from PosgreSQL 9.4.
 it should only ad one day of data, quick
 however, if there is a huge redo of old data ...
 
-"REFRESH MATERIALIZED VIEW CONCURRENTLY takes an EXCLUSIVE lock" on the (source) table. Following the crumb trail to documentation we can read that an EXCLUSIVE lock on a table "allows only concurrent ACCESS SHARE locks, i.e., only reads from the table can proceed". In the same paragraph we can see that "EXCLUSIVE conflicts with ... EXCLUSIVE", meaning that another REFRESH MATERIALIZED VIEW CONCURRENTLY statement, which requests the same EXCLUSIVE lock, will have to wait until the earlier EXCLUSIVE lock is released.
+"REFRESH MATERIALIZED VIEW CONCURRENTLY takes an EXCLUSIVE lock" on the (source) table. 
+Following the crumb trail to documentation we can read that an EXCLUSIVE lock on a table 
+"allows only concurrent ACCESS SHARE locks, i.e., only reads from the table can proceed". 
+In the same paragraph we can see that "EXCLUSIVE conflicts with ... EXCLUSIVE", meaning 
+that another REFRESH MATERIALIZED VIEW CONCURRENTLY statement, which requests the same 
+EXCLUSIVE lock, will have to wait until the earlier EXCLUSIVE lock is released.
+
 If you want to avoid waiting for this lock for an undefined period, 
 you may want to set the session variable lock_timeout to a sensible value.
 
@@ -39,6 +45,7 @@ you may want to set the session variable lock_timeout to a sensible value.
 -- covid_data_meta_data
 --select * from covid_data_state_metadata
 
+-- view: state metadata
 -- drop cascade ... dependent objects ... need to set up a script to run via node
 DROP MATERIALIZED VIEW IF EXISTS covid_data_state_metadata;
 CREATE MATERIALIZED VIEW covid_data_state_metadata AS

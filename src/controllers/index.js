@@ -1,2 +1,2 @@
-export * from './home';
-export * from './tables-to-json';
+export * from './home.js';
+export * from './tables-to-json.js';

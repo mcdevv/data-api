@@ -1,7 +1,8 @@
-import { Pool } from 'pg';
-import { connectionString } from '../settings';
+import pgPkg from 'pg';
+import { connectionString } from '../settings.js';
 // import dotenv from 'dotenv';
 // dotenv.config(); // may need if need to us PORT in .env for a custom port ...
+const { Pool } = pgPkg; // CommonJS does not support named exportss
 
 // ??? 5 concurrent connections on the free plan
 const pool = new Pool({ connectionString });

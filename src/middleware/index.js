@@ -1,6 +1,9 @@
-export * from './middleware';
+export * from './middleware.js';
 
 /*
+http://thecodebarbarian.com/rest-apis-with-observables.html
+http://thecodebarbarian.com/using-ramda-as-a-dependency-injector
+
 Express documentation describes a middleware as:
 https://expressjs.com/en/guide/using-middleware.html
 “[...] functions that have access to the request object (req), the response object (res),

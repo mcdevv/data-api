@@ -7,7 +7,7 @@ import {
   indexRouter,
   staticPublicRouter,
   tableToJsonRouter,
-} from './routes/index';
+} from './routes/index.js';
 
 // const bodyParser = require('body-parser'); see js-vocab api for usage
 
@@ -22,7 +22,7 @@ app.use('/v1/static', staticPublicRouter);
 app.use('/v1/table-to-json', tableToJsonRouter);
 app.use('/v1', indexRouter); // ttd: perf and order of routers
 if (process.env.DEBUG === 'express:*') {
-  console.log('endpoints',listEndpoints(app));
+  console.log('endpoints', listEndpoints(app));
 }
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

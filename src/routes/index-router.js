@@ -1,5 +1,5 @@
 import express from 'express';
-import { indexPage } from '../controllers'; // , addMessage
+import { indexPage } from '../controllers/index.js'; // , addMessage
 // import { modifyMessage, performAsyncAction } from '../middleware';
 
 const indexRouter = express.Router();
